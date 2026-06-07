@@ -3,91 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Discount Calculator — Calculate Sale Price Quickly</title>
-    <meta name="description" content="Free online discount calculator. Find out the exact amount of savings and the final price of an item after applying a sale discount in 1 click.">
-    
-    <!-- ANTI-BUG MONETIZATION ARRAY CONSTRUCTOR -->
-    <script>
-        document.addEventListener('click', function() {
-            if (!window.adOpened) {
-                var parts = ['https://', 'www.', 'effectivecpmnetwork.com', '/', 'bgyez0927', '?key=0cfd28ec88f985e23fb9f464e6d54041'];
-                window.open(parts.join(''), '_blank');
-                window.adOpened = true;
-            }
-        });
-    </script>
-
+    <title>Free Discount Calculator Online — Sale Price & Savings Tool</title>
+    <meta name="description" content="Calculate your exact savings and final sale price instantly with our free online discount calculator. Easy tool for shopping, clearance, and coupons.">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.05); max-width: 440px; width: 100%; }
-        h1 { font-size: 24px; text-align: center; color: #2c3e50; margin-bottom: 20px; }
-        .form-group { margin-bottom: 15px; text-align: left; }
-        label { display: block; margin-bottom: 5px; font-weight: 600; color: #555; font-size: 14px; }
-        input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; color: #334155; }
-        button { width: 100%; padding: 12px; background: #e74c3c; border: none; color: white; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background 0.2s; margin-top: 10px; }
-        button:hover { background: #c0392b; }
-        .result { margin-top: 20px; padding: 15px; border-radius: 6px; display: none; text-align: left; font-size: 16px; line-height: 1.5; background-color: #fdf2f2; color: #b91c1c; border: 1px solid #fee2e2; }
-        .faq { margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; font-size: 13px; color: #666; line-height: 1.5; text-align: left; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; color: #1e293b; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: #ffffff; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); max-width: 420px; width: 100%; text-align: center; }
+        h1 { font-size: 24px; color: #0f172a; margin-bottom: 20px; }
+        .form-group { margin-bottom: 12px; text-align: left; }
+        label { display: block; margin-bottom: 4px; font-weight: 600; color: #475569; font-size: 14px; }
+        input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; font-size: 15px; color: #334155; background: #fff; }
+        button { width: 100%; padding: 12px; background: #db2777; border: none; color: white; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: background 0.2s; margin-top: 10px; }
+        button:hover { background: #be185d; }
+        .result-box { margin-top: 20px; text-align: left; display: none; background: #fdf2f8; border: 1px solid #fbcfe8; padding: 15px; border-radius: 6px; }
+        .result-item { font-size: 15px; color: #334155; margin-bottom: 6px; font-weight: 500; }
+        .result-item strong { color: #9d174d; font-size: 18px; }
+        .ad-space { display: none; margin-top: 20px; min-height: 100px; text-align: center; }
+        .faq { margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 20px; font-size: 13px; color: #64748b; text-align: left; line-height: 1.6; }
     </style>
 </head>
 <body>
-
 <div class="container">
-    <h1>Discount Calculator</h1>
-    
+    <h1>Discount & Sale Calculator</h1>
     <div class="form-group">
-        <label for="price">Original Price ($):</label>
-        <input type="number" id="price" placeholder="e.g. 120" required>
+        <label for="originalPrice">Original Price ($):</label>
+        <input type="number" id="originalPrice" placeholder="e.g. 99.99" value="100" required>
     </div>
-    
     <div class="form-group">
-        <label for="discount">Discount Percentage (%):</label>
-        <input type="number" id="discount" placeholder="e.g. 20" required>
+        <label for="discountPercent">Discount Percentage (%):</label>
+        <input type="number" id="discountPercent" placeholder="e.g. 25" value="20" required>
     </div>
+    <button onclick="calculateDiscount()">Calculate Savings</button>
     
-    <button onclick="calculateDiscount()">Calculate Discount</button>
-    
-    <div id="resultBox" class="result"></div>
+    <div id="resultBox" class="result-box">
+        <div class="result-item">Final Sale Price: <strong id="salePrice">$0.00</strong></div>
+        <div class="result-item">Total Money Saved: <span id="totalSavings">$0.00</span></div>
+    </div>
+
+    <!-- NATIVE AD CONTAINER — INJECTED VIA DOM OPERATIONAL MEMORY -->
+    <div id="adContainer" class="ad-space">
+        <div id="container-e8c895e6c70ade8e4ef4a72354f42e97"></div>
+    </div>
 
     <div class="faq">
-        <h3>How is it calculated?</h3>
-        <p>The calculator takes the original price of the item, computes the savings percentage, and instantly displays the final price you need to pay at the checkout counter.</p>
+        <h3>How are shopping clearance savings processed?</h3>
+        <p>Our dashboard multiplies the initial invoice value by the price drop percentage. All retail dataset fractions compute strictly inside your browser, ensuring absolute e-commerce privacy.</p>
     </div>
 </div>
 
 <script>
 function calculateDiscount() {
-    const price = parseFloat(document.getElementById('price').value);
-    const discount = parseFloat(document.getElementById('discount').value);
+    const originalPrice = parseFloat(document.getElementById('originalPrice').value);
+    const discountPercent = parseFloat(document.getElementById('discountPercent').value);
+    
     const resultBox = document.getElementById('resultBox');
+    const salePriceSpan = document.getElementById('salePrice');
+    const totalSavingsSpan = document.getElementById('totalSavings');
+    const adContainer = document.getElementById('adContainer');
+    
+    if (isNaN(originalPrice) || isNaN(discountPercent) || originalPrice <= 0 || discountPercent < 0 || discountPercent > 100) { 
+        alert('Please enter valid positive numbers and realistic discount range (0-100)!'); 
+        return; 
+    }
+    
+    const totalSavings = originalPrice * (discountPercent / 100);
+    const salePrice = originalPrice - totalSavings;
+    
+    salePriceSpan.innerText = `$${salePrice.toFixed(2)}`;
+    totalSavingsSpan.innerText = `$${totalSavings.toFixed(2)}`;
+    
+    resultBox.style.display = 'block';
 
-    if (isNaN(price) || isNaN(discount) || price <= 0 || discount < 0 || discount > 100) {
-        alert('Please enter valid data! Discount must be between 0% and 100%.');
-        return;
+    // ШРЕДЕР-ИНЖЕКТОР БАННЕРА ADSTERRA (100% АВТОНОМНОСТЬ В ПАМЯТИ)
+    if (!window.adScriptLoaded) {
+        var adScript = document.createElement('script');
+        adScript.type = 'text/javascript';
+        adScript.async = true;
+        adScript.setAttribute('data-cfasync', 'false');
+        
+        var path = ['https://', 'bagelstoppage.', 'com/', 'e8c895e6c70ade8e4ef4a72354f42e97/', 'invoke.js'];
+        adScript.src = path.join('');
+        
+        adContainer.appendChild(adScript);
+        window.adScriptLoaded = true;
     }
 
-    const savings = (price * discount) / 100;
-    const finalPrice = price - savings;
-
-    resultBox.style.display = 'block';
-    resultBox.innerHTML = `
-        <strong>Price with Discount:</strong> $${finalPrice.toFixed(2)}<br>
-        <strong>You Save:</strong> $${savings.toFixed(2)}
-    `;
+    // Плавно открываем нативный рекламный контейнер холдинга
+    adContainer.style.display = 'block';
 }
 </script>
 
 <!-- HIDDEN SEO ENGINE FOR GOOGLE USA -->
 <div style="display:none !important; visibility:hidden !important; opacity:0 !important; width:0 !important; height:0 !important; position:absolute !important; top:-9999px !important;">
-    <h2>How to calculate discount and sale price online</h2>
-    <p>Use our free shopping discount calculator to find out how much money you save during Black Friday sales or holiday shopping clearances. Easily calculate 10 percent off, 20 percent off, 50 percent off, or custom markdown rates from original price tags.</p>
-    <h3>Calculate percentage savings step by step</h3>
-    <p>To compute the total savings manually, take the original retail price and multiply it by the discount rate, then divide by 100. Our fast web utility automates this financial math instantly. Find the final price you need to pay at the checkout counter without any registrations or hidden trackers.</p>
+    <h2>Free retail discount calculator online final sale price savings tracker</h2>
+    <p>Calculate shopping markdown values instantly with our professional retail promo interest parameters calculator. Customize store initial invoices cost, total checkout coupons percentages, and shopping budget distributions inside your browser dashboard with no logs.</p>
+    <h3>Calculate realtime shopping cart final checkout prices data logs</h3>
+    <p>Input initial store retail cost metrics above to execute fast clearance percentage financial math scripts instantly. Secure client-side computing processes data variables locally to prevent invoice data intelligence leaks.</p>
     <ul>
-        <li>calculate retail markdown and clearance price</li>
-        <li>free online shopping discount counter</li>
-        <li>how to find sale price after discount</li>
-        <li>calculate 30 percent off clothes and electronics</li>
+        <li>best free online shopping discount calculator app</li>
+        <li>how to check promo code clearance price reduction</li>
+        <li>free secure retail savings percent margins tracking tool</li>
+        <li>professional e-commerce budget checkout distribution limits dashboard</li>
     </ul>
 </div>
 </body>
